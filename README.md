@@ -63,7 +63,7 @@ chmod +x wpm.sh
 
 # Recommended: create an alias that points to the script when running wpm
 # (add this line to your ~/.bashrc or ~/.zshrc)
-# Replace the path with the real location where you keep the repo
+# Replace the path with the real location of where you keep the wpm.sh script
 alias wpm='/path/to/wpm/wpm.sh'
 
 # Reload your shell configuration
