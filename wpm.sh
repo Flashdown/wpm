@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Bash-based Wine Prefix Manager (wpm.sh) v0.1
+# Bash-based Wine Prefix Manager (wpm.sh) v0.2
 # Copyright (C) 2026 Enrico Heine
 # https://github.com/Flashdown/wpm
 #
@@ -110,8 +110,13 @@ EOF
 
 install_system_deps() {
     if ! command -v cabextract &>/dev/null; then
-        print_info "Installing system dependency: cabextract"
-        sudo apt update && sudo apt install -y cabextract || print_warn "Could not install cabextract"
+        print_warn "System dependency 'cabextract' is missing."
+        print_warn "Please install it with your distribution's package manager, e.g.:"
+        print_warn "  Debian/Ubuntu:   sudo apt install cabextract"
+        print_warn "  Fedora/RHEL:     sudo dnf install cabextract"
+        print_warn "  Arch:            sudo pacman -S cabextract"
+        print_warn "  openSUSE:        sudo zypper install cabextract"
+        print_warn "Other useful tools (wget, unzip, curl) should also be present."
     fi
     ensure_winetricks || return 1
 }
