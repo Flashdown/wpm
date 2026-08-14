@@ -1,4 +1,4 @@
-# wpm – Wine Prefix Manager
+# wpm – a bash-based Wine Prefix Manager
 
 **A transparent, Bash-based Wine prefix manager with template support.**
 
