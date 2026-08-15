@@ -179,7 +179,24 @@ See [`templates/README.md`](templates/README.md) for more details.
 
 ---
 
-## DEMO Screenshots
+## License
+
+This project is licensed under the **GNU General Public License v3.0**.  
+See the [LICENSE](LICENSE) file or <https://www.gnu.org/licenses/gpl-3.0> for details.
+
+---
+
+## Contributing
+
+* Bug reports and feature requests → open an issue
+* New templates → open a pull request that adds the file to the `templates/` directory
+* Improvements to the core script → also very welcome
+
+Keep it simple, keep it transparent. That’s the whole point of `wpm`.
+
+---
+
+## Demo Screenshots
 
 **The screenshots below show a complete Command & Conquer Gold installation from beginning to end that has been created via the `cnc-gold` template**
 
@@ -199,23 +216,3 @@ See [`templates/README.md`](templates/README.md) for more details.
 ![cnc-gold #13](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_videopack_install_running.png)
 ![cnc-gold #14](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_videpack_install_finished.png)
 ![cnc-gold #15](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_z_setup_fully_completed.png)
-
-
-
-
----
-
-## License
-
-This project is licensed under the **GNU General Public License v3.0**.  
-See the [LICENSE](LICENSE) file or <https://www.gnu.org/licenses/gpl-3.0> for details.
-
----
-
-## Contributing
-
-* Bug reports and feature requests → open an issue
-* New templates → open a pull request that adds the file to the `templates/` directory
-* Improvements to the core script → also very welcome
-
-Keep it simple, keep it transparent. That’s the whole point of `wpm`.
