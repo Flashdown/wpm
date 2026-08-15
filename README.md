@@ -7,7 +7,7 @@
 > A fully working **Command & Conquer Gold** (Wine 11.15, 64-bit) template with multiplayer via CnCNet is included as a real-world example, plus a detailed `example-template` that shows how to create your own.
 
 ---
-
+![WPM Screenshot](https://github.com/Flashdown/wpm/blob/main/screenshots/wpm-list_templates_create.png)
 ## Why this exists
 
 I come from a time where it was normal to manually configure Wine within a single instance, non-prefixed world, to run Office 2007 and/or Photoshop, with DLL overrides and registry hacks. Nowadays my Linux Desktop usage increased and at one point I came to the conclusion that it would be useful to have my own bash based wine prefix manager, that does exactly what I need the way I want, so I can comfortably manage prefixes and runners and understand exactly what is going on, so can you, which is why I have choosen BASH as foundation for this script.
