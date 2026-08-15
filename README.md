@@ -142,6 +142,7 @@ Templates live as simple Bash files in `~/Wine/templates/`.
 A template can define:
 
 ```bash
+# Template: TEMPLATE DESCRIPTION that is shown in the "wpm templates" listing
 DEFAULT_WINE="11.15"          # Kron4ek version, absolute path, or URL
 DEFAULT_ARCH="64"             # 32 or 64
 WINETRICKS_DEPS="dotnet35 corefonts ..."
@@ -178,9 +179,29 @@ See [`templates/README.md`](templates/README.md) for more details.
 
 ---
 
-## Screenshots
+## DEMO Screenshots
 
-*(Coming soon – screenshots of a complete Command & Conquer Gold installation created with the `cnc-gold` template will be added here.)*
+**The screenshots below show a complete Command & Conquer Gold installation from beginning to end that has been created via the `cnc-gold` template**
+
+![WPM Screenshot](https://github.com/Flashdown/wpm/blob/main/screenshots/wpm-list_templates_create.png)
+![cnc-gold #1](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_download.png)
+![cnc-gold #2](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_download_videopack_german.png)
+![cnc-gold #3](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_install.png)
+![cnc-gold #4](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_install_blackscreen_apply_fix_via_taskbar_icon_click.png)
+![cnc-gold #5](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_install_blackscreen_fixed_via_taskbar_icon_click.png)
+![cnc-gold #6](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_install_in_progress.png)
+![cnc-gold #7](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_install_is_finished.png)
+![cnc-gold #8](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_install_resolution_selection.png)
+![cnc-gold #9](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_game_resolution_update_res_to_1440x960_for_my_1080p_screen.png)
+![cnc-gold #10](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_videopack_german_install.png)
+![cnc-gold #11](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_videopack_german_install_blackscreen.png)
+![cnc-gold #12](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_videopack_german_install_blackscreen_fixed_by_taskbar_icon_click.png)
+![cnc-gold #13](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_videopack_install_running.png)
+![cnc-gold #14](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_videpack_install_finished.png)
+![cnc-gold #15](https://github.com/Flashdown/wpm/blob/main/screenshots/cnc-gold/cnc-gold_z_setup_fully_completed.png)
+
+
+
 
 ---
 
