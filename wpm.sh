@@ -75,7 +75,7 @@ Each template can define:
   prepare_extra() { ... }       # optional extra steps (receives prefix_path wine_bin)
 
 Examples:
-  # Command & Conquer Gold Template  
+  # Command & Conquer Gold Template
   wpm create myprefix --template cnc-gold
 
   # 32-bit prefix without template
@@ -100,7 +100,7 @@ Examples:
 
   # Open Explorer inside the prefix
   wpm run myprefix explorer
-  
+
   # Open a shell inside the prefix (e.g. run winecfg, winetricks
   # or launch/test apps from here via wine e.g.: wine /path/to/my.exe)
   wpm shell myprefix
@@ -888,7 +888,7 @@ cmd_create() {
     fi
 
     print_info "Prefix '$name' ready!"
-    echo "" 
+    echo ""
     print_info "You can now install software or run programs using:"
     print_info "  wpm run $name explorer"
     print_info "  wpm run $name C:\\myfolder\\myfile.exe or /path/to/my.exe"
@@ -976,6 +976,18 @@ cmd_run() {
     export WINELOADER="$wine_bin"
     export WINESERVER="${wine_bin%/*}/wineserver"
     export PATH="$DEPS_DIR:${wine_bin%/*}:$PATH"
+    export W_CACHE="$WINETRICKS_CACHE"
+
+    # winetricks support
+
+    if [[ "$1" == "winetricks" ]]; then
+        if [ ! -x "$WINETRICKS" ]; then
+            ensure_winetricks || exit 1
+        fi
+        shift
+        exec "$WINETRICKS" "$@"
+    fi
+
     exec "$wine_bin" "$@"
 }
 
