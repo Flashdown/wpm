@@ -2,14 +2,20 @@
 
 This directory contains **optional templates** for [wpm](https://github.com/Flashdown/wpm) – a transparent Bash-based Wine prefix manager.
 
-The two templates that ship **inside the main script** (`cnc-gold` and `example-template`) are not present here, they remain for now the permanent default examples and will always be installed automatically by `wpm` itself.
+The official example templates (`cnc-gold` and `example-template`) live here in the repository.  
+They are also included in the release archive, so you can copy them manually into `~/Wine/templates/` if you prefer.  
+Alternatively, use the built-in download command to fetch (or update to) the latest versions anytime:
+
+```bash
+wpm templates download
+```
 
 ---
 
 ## How to use a template from this folder
 
-1. Download the desired `.sh` file (raw or via git clone).
-2. Copy it into your local templates directory:
+1. Download the desired `.sh` file (raw, via git clone, or with `wpm templates download`), **or** copy it from the release archive.
+2. Place it into your local templates directory:
 
    ```bash
    mkdir -p ~/Wine/templates
@@ -24,12 +30,11 @@ The two templates that ship **inside the main script** (`cnc-gold` and `example-
 
 That’s it. No further registration is required.
 
-4. list available templates:
+4. List available templates:
 
    ```bash
    wpm templates
    ```
-
 
 ---
 
