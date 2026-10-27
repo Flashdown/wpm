@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Bash-based Wine Prefix Manager (wpm.sh) v0.3-dev
+# Bash-based Wine Prefix Manager (wpm.sh) v0.3
 # Copyright (C) 2026 Enrico Heine
 # https://github.com/Flashdown/wpm
 #
@@ -55,6 +55,7 @@ Commands:
   shell <name>           Open an interactive shell in the prefix (e.g. run winecfg, winetricks
                           or launch/test apps from here via wine e.g.: wine /path/to/my.exe)
   templates              List available templates
+  templates download     Download/update templates from GitHub
 
 Options for create:
   --wine <version|path|url>
@@ -625,7 +626,56 @@ cmd_shell() {
     exec bash --norc -i
 }
 
+# Download live templates from the official GitHub repository
+download_templates() {
+    print_header "Downloading templates from GitHub"
+    local api_url="https://api.github.com/repos/Flashdown/wpm/contents/templates"
+    local tmp_json="/tmp/wpm-templates-$$.json"
+
+    if ! wget --quiet --timeout=20 -O "$tmp_json" "$api_url"; then
+        print_error "Failed to fetch template list from GitHub"
+        rm -f "$tmp_json"
+        return 1
+    fi
+
+    # Extract download URLs of .sh files (simple parsing, no jq required)
+    local urls
+    urls=$(grep -o '"download_url": "[^"]*\.sh"' "$tmp_json" | cut -d'"' -f4)
+    rm -f "$tmp_json"
+
+    if [ -z "$urls" ]; then
+        print_error "No template files found in the repository"
+        return 1
+    fi
+
+    local count=0
+    local url fname
+    for url in $urls; do
+        fname=$(basename "$url")
+        print_info "Downloading $fname ..."
+        if wget --quiet --timeout=20 -O "$TEMPLATES_DIR/$fname" "$url"; then
+            chmod +x "$TEMPLATES_DIR/$fname" 2>/dev/null || true
+            count=$((count + 1))
+        else
+            print_warn "Failed to download $fname"
+        fi
+    done
+
+    if [ "$count" -gt 0 ]; then
+        print_info "Downloaded/updated $count template(s) into $TEMPLATES_DIR"
+    else
+        print_error "No templates were downloaded"
+        return 1
+    fi
+}
+
 cmd_templates() {
+    # Subcommand: download
+    if [[ "$1" == "download" ]]; then
+        download_templates
+        return
+    fi
+
     print_header "Available templates ($TEMPLATES_DIR)"
     local found=false
     for f in "$TEMPLATES_DIR"/*.sh; do
@@ -642,11 +692,22 @@ cmd_templates() {
             printf "  %s\n" "$tname"
         fi
     done
+
     if [ "$found" = false ]; then
-        echo "  (no templates found)  "
+        echo "  (no templates found)"
+        echo
+        read -r -p "Download the current templates from the GitHub repository? [y/N] " answer
+        if [[ "${answer,,}" == "y" || "${answer,,}" == "yes" ]]; then
+            download_templates
+            echo
+            # Re-list after download
+            cmd_templates
+            return
+        fi
     fi
     echo
     print_info "Create or edit template files in $TEMPLATES_DIR to manage your templates."
+    print_info "Or run: wpm templates download   to fetch the latest from GitHub."
 }
 
 main() {
@@ -667,7 +728,7 @@ main() {
         delete|rm) cmd_delete "$1" ;;
         run) cmd_run "$@" ;;
         shell) cmd_shell "$1" ;;
-        templates) cmd_templates ;;
+        templates) cmd_templates "$@" ;;
         -h|--help|help|"") usage ;;
         *) print_error "Unknown command: $cmd"; usage; exit 1 ;;
     esac
