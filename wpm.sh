@@ -654,7 +654,8 @@ download_templates() {
         fname=$(basename "$url")
         print_info "Downloading $fname ..."
         if wget --quiet --timeout=20 -O "$TEMPLATES_DIR/$fname" "$url"; then
-            chmod +x "$TEMPLATES_DIR/$fname" 2>/dev/null || true
+            # Templates are sourced, they must not be executable
+            chmod -x "$TEMPLATES_DIR/$fname" 2>/dev/null || true
             count=$((count + 1))
         else
             print_warn "Failed to download $fname"

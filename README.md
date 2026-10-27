@@ -4,7 +4,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-> A fully working **Command & Conquer Gold** (Wine 11.15, 64-bit) template with multiplayer via CnCNet is included as a real-world example, plus a detailed `example-template` that shows how to create your own.
+> A fully working **Command & Conquer Gold** (Wine 11.15, 64-bit) template with multiplayer via CnCNet is included in the release archive as a real-world example (copy the files from the archive into `~/Wine/templates/`, or run `wpm templates download` to fetch/update the latest), plus a detailed `example-template` that shows how to create your own.
 
 ---
 ![WPM Screenshot](https://github.com/Flashdown/wpm/blob/main/screenshots/wpm-list_templates_create.png)
@@ -32,6 +32,7 @@ So I built **wpm** – a bash based prefix manager that stays out of the way, do
 * Automatic download & caching of Wine / Proton builds from [Kron4ek/Wine-Builds](https://github.com/Kron4ek/Wine-Builds/releases)
 * Support for any custom Wine binary (path) or direct download URL
 * Template system – turn a working prefix setup workflow into a reusable template
+* Download or update the latest community templates anytime with `wpm templates download`
 * Bundled, up-to-date winetricks (downloaded on first use)
 * Works on any Linux distribution that provides Bash + common tools (no distribution-specific package managers required)
 
@@ -77,7 +78,7 @@ The first time you run any command that needs them, `wpm` will automatically cre
 ├── versions/          # cached Wine / Proton builds
 ├── Prefixes/          # your prefixes
 ├── deps/              # winetricks
-└── templates/         # default templates are written here on first run
+└── templates/         # place your templates here (copy from the release archive or use `wpm templates download`)
 ```
 
 You can change the base directory by editing the `WINE_BASE` variable at the top of the script.
@@ -91,6 +92,8 @@ You can change the base directory by editing the `WINE_BASE` variable at the top
 wpm create myapp
 
 # Create a prefix using the ready-made Command & Conquer Gold template
+# (copy the cnc-gold.sh from the release archive into ~/Wine/templates/ first,
+#  or run `wpm templates download` to get the latest templates and versions)
 wpm create cnc --template cnc-gold
 
 # Create a 32-bit prefix with a specific Wine version
@@ -131,6 +134,7 @@ wpm list
 wpm info myapp
 wpm delete myapp
 wpm templates          # show available templates
+wpm templates download # download/update the latest templates from the GitHub repository
 ```
 
 ---
@@ -154,26 +158,34 @@ prepare_extra() {
 }
 ```
 
-### Built-in examples
+### Example templates
 
 | Template            | Description                                                                 |
 |---------------------|-----------------------------------------------------------------------------|
 | `cnc-gold`          | Fully working Command & Conquer Gold (1.06c) + cnc-ddraw (github.com/FunkyFr3sh/cnc-ddraw) + CnCNet Multiplayer |
 | `example-template`  | Documented skeleton that shows every available hook                         |
 
-These two are shipped inside the main script and are written to `~/Wine/templates/` on first run. They will probably always stay as the only default examples provided by the script itself so we dont polute the main script with more templates.
+These templates and any we have at the time of a release are **included in the release archive**. Copy the files from the archive’s `templates/` folder into `~/Wine/templates/` if you want to use them.
+
+Alternatively (or to always have the very latest versions), download/update them directly:
+
+```bash
+wpm templates download
+```
+
+If no templates are present yet, `wpm templates` will also offer to download them for you.  
+The download fetches the current live versions from GitHub and overwrites any local files with the same name.
 
 ### Adding more templates
 
-1. Browse the [`templates/`](templates/) folder of this repository.
-2. Download the `.sh` file you want.
-3. Place it in `~/Wine/templates/`.
-4. Use it with `wpm create <name> --template <filename-without-.sh>`.
-
-A download helper for community templates may be added later. Until then the manual method above is the way to go.
+1. Copy the official examples from the release archive into `~/Wine/templates/`, **or**
+2. Run `wpm templates download` to fetch the latest versions, **or**
+3. Browse the [`templates/`](templates/) folder of this repository and download individual `.sh` files manually.
+4. Place them in `~/Wine/templates/`.
+5. Use them with `wpm create <name> --template <filename-without-.sh>`.
 
 **Pull requests that add new templates to the `templates/` directory are very welcome!**  
-Just open a PR – we keep the two built-in examples in the main script, everything else lives in the repository’s `templates/` folder for the community.
+Everything lives in the repository’s `templates/` folder so the core script stays lean.
 
 See [`templates/README.md`](templates/README.md) for more details.
 
